@@ -37,9 +37,20 @@ function flipCard() {
     console.log(cards[cardID].cardImage);
     console.log(cards[cardID].suit);
     cardsInPlay.push(cards[cardID].rank);
+    this.setAttribute('src', cards[cardID].cardImage);
+    if(cardsInPlay > 1){
     checkForMatch();
     }
+}
 
-flipCard(0);
-flipCard(3);
-checkForMatch();
+function createBoard(){
+    for (var i = 0; i <cards.length; i++) {
+      var cardElement = document.createElement('img');
+      cardElement.setAttribute('src', 'images/back.png');
+      cardElement.setAttribute('data-id', i);
+      cardElement.addEventListener('click', flipCard);
+      document.getElementById('game-board').appendChild(cardElement);
+    }
+}
+
+createBoard();
